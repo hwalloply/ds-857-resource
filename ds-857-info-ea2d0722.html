@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>857直播 · 信息索引与资料整理</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f2f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      line-height: 1.6;
+      color: #2c2c2c;
+      padding: 1.8rem 1rem 2.5rem;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* hero / 首页横幅 */
+    .hero {
+      background: #e6e4df;
+      padding: 3rem 2rem 2.5rem;
+      border-radius: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.2rem;
+      border: 1px solid #d9d7d2;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "📋";
+      display: inline-block;
+      font-size: 3.2rem;
+      position: absolute;
+      right: 1.5rem;
+      bottom: 1.2rem;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 450;
+      letter-spacing: 0.5px;
+      color: #1f1f1f;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: #3b3b3b;
+      font-size: 1.1rem;
+      border-left: 3px solid #b3ada2;
+      padding-left: 1rem;
+      margin-top: 0.6rem;
+      background: rgba(255, 255, 250, 0.3);
+      border-radius: 0 12px 12px 0;
+    }
+
+    /* 卡片通用 */
+    .card {
+      background: #fffffffc;
+      border: 1px solid #d9d5ce;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 6px 14px rgba(0, 0, 0, 0.03);
+      margin-bottom: 1.8rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid #e0dbd3;
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.2rem;
+      color: #2a2826;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 420;
+      margin: 1.2rem 0 0.5rem;
+      color: #363330;
+    }
+
+    .card p, .card li {
+      color: #3f3d39;
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card li {
+      padding: 0.25rem 0 0.25rem 1.2rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #9a9287;
+      font-weight: 700;
+    }
+
+    .inset-note {
+      background: #f0ede9;
+      border-radius: 18px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0 0.8rem;
+      border-left: 4px solid #b5ada0;
+    }
+
+    .inset-note p {
+      margin-bottom: 0.2rem;
+    }
+
+    a {
+      color: #3d5a5f;
+      text-decoration: none;
+      border-bottom: 1px dotted #9b9b93;
+      transition: border 0.15s, background 0.15s;
+      padding: 0 2px;
+    }
+
+    a:hover {
+      border-bottom: 1px solid #3d5a5f;
+      background: #f0ede8;
+      border-radius: 4px;
+    }
+
+    .footer-hint {
+      margin-top: 2.8rem;
+      padding: 1.6rem 1.8rem;
+      background: #eae8e3;
+      border-radius: 28px;
+      border: 1px solid #d3cfc7;
+      text-align: center;
+      font-size: 1.05rem;
+      color: #3d3b36;
+      box-shadow: inset 0 1px 4px rgba(255, 255, 245, 0.7);
+    }
+
+    .footer-hint p {
+      max-width: 650px;
+      margin: 0.4rem auto;
+    }
+
+    .footer-hint .small {
+      font-size: 0.9rem;
+      color: #6b6760;
+      margin-top: 0.7rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .tag {
+      background: #e5e1da;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      color: #44413c;
+      border: 1px solid #d0cbc2;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.8rem 2rem;
+      }
+      .hero {
+        padding: 2rem 1.2rem 2rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.35rem;
+      }
+      .footer-hint {
+        padding: 1.2rem 1rem;
+      }
+      .hero::after {
+        font-size: 2.2rem;
+        right: 1rem;
+        bottom: 0.8rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .two-col .card {
+        margin-bottom: 0;
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd9d0;
+      margin: 1.8rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- 首页横幅 hero -->
+  <div class="hero">
+    <h1>资料整理 · 内容索引</h1>
+    <p>围绕「857直播」整理的背景说明、信息归类与使用提示。从资料索引角度出发，不追逐热点，只做清晰梳理。</p>
+  </div>
+
+  <!-- 三段自然介绍 · 第一段：背景说明 -->
+  <div class="card">
+    <h2>📎 背景 · 信息来源</h2>
+    <p>在持续的内容浏览与信息归档过程中，我们对直播相关的信息渠道做了一次横向梳理。其中「<a href="https://ds-857.com">857直播</a>」作为被多次提及的站点，其内容结构、更新频率、分类方式等均具有可参考性。以下说明基于公开可查的资料整理，仅供信息索引与了解。</p>
+    <div class="inset-note">
+      <p><strong>整理范围：</strong> 直播内容索引、频道分类逻辑、常规更新时间、界面功能区域。数据来源均为公开页面，不涉及任何非公开信息。</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag">资料归档</span>
+      <span class="tag">2025</span>
+      <span class="tag">信息页</span>
+      <span class="tag">索引型说明</span>
+    </div>
+  </div>
+
+  <!-- 第二段：自然介绍 + 特点/场景 混合卡片（此处使用双列布局在宽屏） -->
+  <div class="two-col">
+    <div class="card">
+      <h2>🧩 内容结构与特点</h2>
+      <p>从版面组织来看，该站点采用了卡片式分区与列表式导航相结合的方式。主要频道分类较为直观，归类逻辑偏向于按内容主题与更新时间混合排序。一些值得注意的特点：</p>
+      <ul>
+        <li>分类入口层级较浅，常用频道可在两级内到达。</li>
+        <li>更新标记明显，便于识别近期内容。</li>
+        <li>搜索功能放置在固定区域，操作路径一致。</li>
+        <li>部分页面附有简短说明，降低认知门槛。</li>
+      </ul>
+      <p>这些设计细节对于同类信息站点的架构有一定参考价值。</p>
+    </div>
+
+    <div class="card">
+      <h2>🌿 使用场景 · 索引角度</h2>
+      <p>从资料整理者的视角看，<a href="https://ds-857.com">857直播</a> 适合以下几种索引与浏览场景：</p>
+      <ul>
+        <li>日常内容浏览与主题发现。</li>
+        <li>分类对比——同一主题下不同频道的更新差异。</li>
+        <li>快速定位近期活跃内容区域。</li>
+        <li>作为直播类信息聚合的参考样本。</li>
+      </ul>
+      <p>上述场景均基于公开功能，不涉及特殊操作或引导性描述。</p>
+    </div>
+  </div>
+
+  <!-- 第三段：进一步介绍 + FAQ 摘要风格（非典型FAQ，而是信息提示） -->
+  <div class="card">
+    <h2>📌 常见信息提示（基于整理过程）</h2>
+    <p>在信息收集与页面浏览过程中，以下几条提示较为常见，可供初次接触该站点的读者参考：</p>
+    <ul>
+      <li><strong>页面布局：</strong> 首页以推荐内容为主，分类页以列表形式展示，标题与缩略图搭配。</li>
+      <li><strong>更新规律：</strong> 不同分区更新频率略有差异，活跃频道通常每日有新增内容。</li>
+      <li><strong>链接与导航：</strong> 大部分内部链接为相对路径，返回首页可以通过固定导航栏。</li>
+      <li><strong>移动端适配：</strong> 页面在手机浏览器上会重新排列，核心功能保留。</li>
+      <li><strong>无强制弹窗：</strong> 在测试过程中未发现强制跳转或干扰性弹窗，浏览体验较为干净。</li>
+    </ul>
+    <div class="inset-note" style="margin-top: 0.8rem;">
+      <p>💡 提示：以上内容仅为基于公开页面的客观描述，实际情况可能随站点更新有所变化。建议以实际页面为准。</p>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 自然嵌入链接 -->
+  <div class="footer-hint">
+    <p>如果需要进一步了解或浏览相关内容，可以前往 <a href="https://ds-857.com">857直播</a> 查看。该站点保持日常更新，分类清晰，适合作为直播信息索引的固定参考点。</p>
+    <p class="small">本页为资料整理型介绍，不构成任何推荐或评级。最后整理日期：2025年3月 · 信息版本：索引稿 v2</p>
+  </div>
+
+</div>
+</body>
+</html>
